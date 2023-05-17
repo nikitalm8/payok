@@ -62,7 +62,6 @@ class PayOK(object):
         :param dict response: API response
         :raises PayOKError: Base API error
         """
-        print(response)
 
         if response.get('status') == 'error':
 
