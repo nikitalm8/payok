@@ -1,16 +1,16 @@
 <div align="left">
     <h1>PayOK    <img src="https://payok.io/files/image/logo_white.svg" width=64 height=24></h1>
     <p align="left" >
-        <a href="https://pypi.org/project/payok/">
+        <a href="https://pypi.org/project/payok.io/">
             <img src="https://img.shields.io/pypi/v/payok.io?style=flat-square" alt="PyPI">
         </a>
-        <a href="https://pypi.org/project/payok/">
+        <a href="https://pypi.org/project/payok.io/">
             <img src="https://img.shields.io/pypi/dm/payok.io?style=flat-square" alt="PyPI">
         </a>
     </p>
 </div>
 
-A simple, yet powerful library for PayOK [API](https://payok.io/cabinet/documentation/doc_api_main)
+A simple, yet powerful library for [PayOK API](https://payok.io/cabinet/documentation/doc_api_main)
 
 
 ## Usage
