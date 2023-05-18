@@ -6,6 +6,7 @@ from ..enums import (
     WebhookStatus, 
 )
 
+from typing import Optional
 from datetime import datetime
 
 from pydantic import BaseModel, validator
@@ -29,7 +30,7 @@ class Transaction(BaseModel):
     date: datetime
     pay_date: datetime = None
     status: PayStatus = Field(PayStatus.waiting, alias='transaction_status')
-    custom_fields: dict = {}
+    custom_fields: Optional[dict]
     webhook_status: WebhookStatus
     webhook_amount: int
 
