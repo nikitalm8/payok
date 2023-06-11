@@ -14,8 +14,8 @@ from .enums import (
 )
 from .exceptions import PayOKError
 
-from urllib.parse import urlencode
 from typing import Union, Optional, List
+from urllib.parse import urlencode
 
 from aiohttp import ClientSession
 
@@ -234,7 +234,7 @@ class PayOK(object):
             'method': method,
             'lang': lang,
             'sign': sign.hexdigest(),
-            'custom': custom_params or None,
+            **custom_params,
         }
         url = 'https://payok.io/pay?' + urlencode(
             {

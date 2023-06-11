@@ -1,7 +1,7 @@
 from ..enums import PayoutMethod, PayStatus
 
-from typing import Optional
 from datetime import datetime
+from typing import Optional
 
 from pydantic import BaseModel, validator
 from pydantic.fields import Field

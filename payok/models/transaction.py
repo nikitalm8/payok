@@ -6,8 +6,8 @@ from ..enums import (
     WebhookStatus, 
 )
 
-from typing import Optional
 from datetime import datetime
+from typing import Dict, Any
 
 from pydantic import BaseModel, validator
 from pydantic.fields import Field
@@ -31,7 +31,7 @@ class Transaction(BaseModel):
     date: datetime
     pay_date: datetime = None
     status: PayStatus = Field(PayStatus.waiting, alias='transaction_status')
-    custom_fields: Optional[dict]
+    custom_fields: Dict[str, Any]
     webhook_status: WebhookStatus
     webhook_amount: int
 
@@ -43,5 +43,5 @@ class Transaction(BaseModel):
     @validator('custom_fields', pre=True)
     def validate_fields(raw_field: str) -> dict:
 
-        string = raw_field.replace('&quot;', '\"')
+        string = raw_field.replace('&quot;', '"')
         return json.loads(string)
