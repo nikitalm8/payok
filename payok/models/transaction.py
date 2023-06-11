@@ -19,6 +19,7 @@ class Transaction(BaseModel):
     """
 
     id: int = Field(..., alias='payment_id')
+    description: str
     email: str
     amount: float
     amount_profit: float 

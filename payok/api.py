@@ -29,7 +29,7 @@ class PayOK(object):
 
     def __init__(
         self, 
-        api_id: str, 
+        api_id: int, 
         api_key: str, 
         project_id: Optional[int]=None, 
         project_secret: Optional[str]=None,
@@ -38,7 +38,7 @@ class PayOK(object):
         """
         Initialize the wrapper
 
-        :param str api_id: API ID
+        :param int api_id: API ID
         :param str api_key: API Key
         :param Optional[int] project_id: Project ID, defaults to None
         :param Optional[str] project_secret: Project Secret, defaults to None
