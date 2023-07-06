@@ -1,10 +1,10 @@
-from ..enums import PayoutMethod, PayStatus
-
 from datetime import datetime
 from typing import Optional
 
 from pydantic import BaseModel, validator
 from pydantic.fields import Field
+
+from ..enums import PayoutMethod, PayStatus
 
 
 class Payout(BaseModel):

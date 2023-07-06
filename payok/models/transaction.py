@@ -1,16 +1,12 @@
 import json
 
-from ..enums import (
-    Currency,
-    PayStatus, 
-    WebhookStatus, 
-)
-
 from datetime import datetime
-from typing import Dict, Any
+from typing import Any, Dict, Optional
 
 from pydantic import BaseModel, validator
 from pydantic.fields import Field
+
+from ..enums import Currency, PayStatus, WebhookStatus
 
 
 class Transaction(BaseModel):
@@ -22,7 +18,7 @@ class Transaction(BaseModel):
     description: str
     email: str
     amount: float
-    amount_profit: float 
+    amount_profit: float
     currency: Currency
     comission_percent: float
     comission_fixed: float
@@ -31,7 +27,7 @@ class Transaction(BaseModel):
     date: datetime
     pay_date: datetime = None
     status: PayStatus = Field(PayStatus.waiting, alias='transaction_status')
-    custom_fields: Dict[str, Any]
+    custom_fields: Optional[Dict[str, Any]]
     webhook_status: WebhookStatus
     webhook_amount: int
 
@@ -41,7 +37,11 @@ class Transaction(BaseModel):
         return bool(self.status)
 
     @validator('custom_fields', pre=True)
-    def validate_fields(raw_field: str) -> dict:
+    def validate_fields(raw_field: str) -> Optional[Dict]:
+
+        if raw_field is None:
+
+            return None
 
         string = raw_field.replace('&quot;', '"')
         return json.loads(string)

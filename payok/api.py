@@ -1,11 +1,10 @@
 import hashlib
 
-from .models import (
-    Transaction, 
-    NewPayout,
-    Payout, 
-    Balance,
-)
+from typing import Union, Optional, List
+from urllib.parse import urlencode
+
+from aiohttp import ClientSession
+
 from .enums import (
     Currency,
     ComissionType,
@@ -13,11 +12,12 @@ from .enums import (
     PayoutMethod,
 )
 from .exceptions import PayOKError
-
-from typing import Union, Optional, List
-from urllib.parse import urlencode
-
-from aiohttp import ClientSession
+from .models import (
+    Transaction,
+    NewPayout,
+    Payout,
+    Balance,
+)
 
 
 class PayOK(object):
@@ -28,10 +28,10 @@ class PayOK(object):
     API_URL = 'https://payok.io/api/%s'
 
     def __init__(
-        self, 
-        api_id: int, 
-        api_key: str, 
-        project_id: Optional[int]=None, 
+        self,
+        api_id: int,
+        api_key: str,
+        project_id: Optional[int]=None,
         project_secret: Optional[str]=None,
         session: Optional[ClientSession]=None,
     ) -> None:
@@ -66,7 +66,7 @@ class PayOK(object):
         if response.get('status') == 'error':
 
             raise PayOKError(
-                response['error_code'], 
+                response['error_code'],
                 response.get('error_text') or response.get('text'),
             )
 
@@ -86,7 +86,7 @@ class PayOK(object):
                     key: value
                     for key, value in kwargs.items()
                     if value is not None
-                }, 
+                },
                 'API_ID': self.api_id,
                 'API_KEY': self.api_key,
             },
@@ -125,7 +125,7 @@ class PayOK(object):
             offset=offset,
             shop=project_id or self.project_id,
         )
-        
+
         result.pop('status')
         return [
             Transaction(**transaction)
@@ -186,7 +186,7 @@ class PayOK(object):
 
 
     async def create_bill(
-        self, 
+        self,
         pay_id: int,
         amount: Union[int, float],
         currency: Union[Currency, str]=Currency.RUB,

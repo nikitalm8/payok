@@ -1,11 +1,4 @@
 from .api import PayOK
-from .exceptions import PayOKError
-from .models import (
-    Balance,
-    NewPayout,
-    Payout,
-    Transaction,
-)
 from .enums import (
     Currency,
     ComissionType,
@@ -13,6 +6,13 @@ from .enums import (
     PaymentMethod,
     PayoutMethod,
     WebhookStatus,
+)
+from .exceptions import PayOKError
+from .models import (
+    Balance,
+    NewPayout,
+    Payout,
+    Transaction,
 )
 
 
