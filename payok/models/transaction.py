@@ -22,7 +22,7 @@ class Transaction(BaseModel):
     currency: Currency
     comission_percent: float
     comission_fixed: float
-    method: str
+    method: Optional[str]
     transaction: int
     date: datetime
     pay_date: datetime = None
